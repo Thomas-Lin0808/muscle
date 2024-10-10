@@ -1,0 +1,51 @@
+body {
+    font-family: 'Microsoft JhengHei', '微軟正黑體', 'Microsoft YaHei', sans-serif;
+    /* 讓整個頁面和表單置中 */
+    background-color: #f0f0f0;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px; /* 限制寬度以使內容更加集中 */
+    text-align: center; /* 文字置中 */
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* 讓輸入欄位垂直排列 */
+    gap: 10px; /* 增加輸入欄位之間的間距 */
+}
+
+label, input, select, button {
+    width: 100%; /* 讓所有元素寬度撐滿容器 */
+    font-size: 16px; /* 設定字體大小 */
+}
+
+select {
+    font-size: 18px; /* 調整字體大小 */
+    text-align: center; /* 將選單文字置中 */
+    text-align-last: center; /* 將選中的選項文字置中 */
+    padding: 8px; /* 增加內邊距 */
+}
+
+/* 按鈕的樣式 */
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
