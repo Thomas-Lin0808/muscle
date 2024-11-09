@@ -70,27 +70,19 @@ button:hover {
 #elapsed-time {
     text-align: center;
     font-size: 1.2em;
-    font-weight: bold;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    color: #000;
-}
-
-#elapsed-time {
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: bold;  /* 確保字型是粗體 */
-    border: none;       /* 移除邊框 */
+    font-weight: bold; /* 確保字型是粗體 */
+    border: none;      /* 移除邊框 */
     background-color: transparent; /* 確保背景透明 */
-    outline: none;      /* 移除聚焦時的外圍邊框 */
-    color: #000;        /* 設定文字顏色 */
+    outline: none;     /* 移除輸入框的輪廓邊框 */
+    color: #000;       /* 設定文字顏色 */
 }
 
+/* 閃爍效果 */
 #elapsed-time.blink {
-    animation: blink 1s step-end infinite; /* 閃爍效果 */
+    animation: blink 1s step-end infinite; /* 讓文字閃爍 */
 }
 
+/* 閃爍的關鍵影格 */
 @keyframes blink {
     0% {
         opacity: 1;
@@ -106,11 +98,17 @@ button:hover {
 /* 針對手機設備設置樣式 */
 @media screen and (max-width: 768px) {
     #elapsed-time {
-        font-size: 1.5em;  /* 可以根據手機螢幕調整字型大小 */
+        font-size: 1.5em; /* 可以根據手機螢幕調整字型大小 */
         font-weight: bold;
     }
 }
 
+/* 移除手機上預設的輸入框外觀 */
+input[type="text"], input[type="number"] {
+    -webkit-appearance: none;  /* 去除蘋果設備上的預設外觀 */
+    -moz-appearance: textfield; /* 去除 Firefox 上的預設外觀 */
+    appearance: none;           /* 去除預設外觀 */
+}
 
 /* 頁籤按鈕樣式 */
 .tabs {
