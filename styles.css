@@ -1,3 +1,8 @@
+/* 隱藏 title */
+h1 {
+    display: none;
+}
+
 body {
     font-family: 'Microsoft JhengHei', '微軟正黑體', 'Microsoft YaHei', sans-serif;
     /* 讓整個頁面和表單置中 */
@@ -10,7 +15,7 @@ body {
 }
 
 .container {
-    background-color: white;
+    background-color: rgb(249, 233, 233);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -29,6 +34,18 @@ label, input, select, button {
     font-size: 16px; /* 設定字體大小 */
 }
 
+input, label {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px; /* 可選：設定最大寬度 */
+}
+
+input, select {
+    background-color: rgb(252, 252, 252)
+}
+
 select {
     font-size: 18px; /* 調整字體大小 */
     text-align: center; /* 將選單文字置中 */
@@ -39,7 +56,7 @@ select {
 /* 按鈕的樣式 */
 button {
     padding: 10px;
-    background-color: #007bff;
+    background-color: #f2a145;
     color: white;
     border: none;
     border-radius: 4px;
@@ -47,5 +64,40 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #ed8332;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+#elapsed-time[style*="animation"] {
+    animation: blink 1s step-end infinite alternate;
+}
+
+/* 頁籤按鈕樣式 */
+.tabs {
+    display: flex;  /* 使用 flexbox 排列按鈕，確保它們在同一列 */
+    justify-content: center;  /* 將按鈕置中 */
+    gap: 15px;  /* 設定按鈕之間的間距 */
+    margin-bottom: 20px;
+}
+
+.tabs button {
+    padding: 10px 20px;
+    background-color: #f2a145;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap; /* 防止文字過長換行 */
+}
+
+.tabs button:hover {
+    background-color: #ed8332;
+}
+
+.tabs button.active {
+    background-color: #f08c19;
+    color: white;
 }

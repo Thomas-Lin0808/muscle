@@ -3,39 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>健身課表記錄</title>
+    <title>多功能記錄系統</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>健身課表記錄</h1>
-        <form id="workout-form">
-            <label for="body-part">訓練部位:</label>
-            <select id="body-part" name="body-part" onchange="updateExerciseList()">
-                <option value="胸部">胸部</option>
-                <option value="背部">背部</option>
-                <option value="腿部">腿部</option>
-                <option value="肩部">肩部</option>
-                <option value="手臂">手臂</option>
-                <option value="核心">核心</option>
-            </select>
+        <h1>多功能記錄系統</h1>
+        <!-- 頁籤 -->
+        <div class="tabs">
+            <button onclick="openTab('workout')">健身</button>
+            <button onclick="openTab('expense')">記帳</button>
+            <button onclick="openTab('project')">專案</button>
+        </div>
 
-            <label for="exercise">訓練動作:</label>
-            <select id="exercise" name="exercise">
-                <!-- 根據訓練部位動態更新 -->
-            </select>
+        <!-- 健身頁籤內容 -->
+        <div id="workout" class="tab-content">
+            <h2>健身課表記錄</h2>
+            <form id="workout-form">
+                <label for="body-part">訓練部位:</label>
+                <select id="body-part" name="body-part" onchange="updateExerciseList()">
+                    <option value="胸部">胸部</option>
+                    <option value="背部">背部</option>
+                    <option value="腿部">腿部</option>
+                    <option value="肩部">肩部</option>
+                    <option value="手臂">手臂</option>
+                    <option value="核心">核心</option>
+                </select>
 
-            <label for="weight">重量 (kg):</label>
-            <input type="number" id="weight" name="weight" step="0.01" required>
+                <label for="exercise">訓練動作:</label>
+                <select id="exercise" name="exercise">
+                    <!-- 根據訓練部位動態更新 -->
+                </select>
 
-            <label for="reps">次數:</label>
-            <input type="number" id="reps" name="reps" required>
+                <label for="weight">重量 (kg):</label>
+                <input type="number" id="weight" name="weight" step="0.01" required>
 
-            <label for="sets">組數:</label>
-            <input type="number" id="sets" name="sets" required>
+                <label for="reps">次數:</label>
+                <input type="number" id="reps" name="reps" required>
 
-            <button type="submit">提交</button>
-        </form>
+                <label for="sets">組數:</label>
+                <input type="number" id="sets" name="sets" required>
+
+                <button type="submit">提交</button>
+            </form>
+        </div>
+
+        <!-- 記帳頁籤內容 -->
+        <div id="expense" class="tab-content" style="display: none;">
+            <h2>記帳紀錄</h2>
+            <form id="expense-form">
+                <label for="expense-category">類別:</label>
+                <select id="expense-category" name="expense-category" onchange="updateItemList()">
+                    <option value="飲食">飲食</option>
+                    <option value="交通">交通</option>
+                    <option value="居住">居住</option>
+                    <option value="投資">投資</option>
+                    <option value="醫療">醫療</option>
+                    <option value="娛樂">娛樂</option>
+                    <option value="進修">進修</option>
+                    <option value="雜支">雜支</option>
+                    <option value="收入">收入</option>
+                </select>
+
+                <label for="expense-item">項目:</label>
+                <select id="expense-item" name="expense-item">
+                    <!-- 根據類別動態更新 -->
+                </select>
+                <div style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-bottom: 16px;">
+    
+                    <!-- 金額欄位在上 -->
+                    <div style="text-align: center; margin-bottom: 8px;">
+                        <label for="expense-amount">金額:</label>
+                        <input type="number" id="expense-amount" name="expense-amount" step="0.01" required style="width: 100%; max-width: 300px; box-sizing: border-box;">
+                    </div>
+                    
+                    <!-- 外幣和匯率欄位在下 -->
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 24px; width: 100%;">
+                        
+                        <!-- 外幣選項，保持水平對齊 -->
+                        <div style="display: flex; align-items: center; white-space: nowrap;">
+                            <label for="foreign-currency" style="margin-right: 4px;">外幣:</label>
+                            <input type="checkbox" id="foreign-currency" name="foreign-currency" onchange="toggleExchangeRate()">
+                        </div>
+                        
+                        <!-- 匯率欄位 -->
+                        <div style="display: flex; align-items: center; white-space: nowrap;">
+                            <label for="exchange-rate" style="margin-right: 4px;">匯率:</label>
+                            <input type="number" id="exchange-rate" name="exchange-rate" step="0.01" disabled>
+                        </div>
+                        
+                    </div>
+                </div>
+            
+                <label for="notes">備註:</label>
+                <input type="text" id="notes" name="notes">
+
+                <button type="submit">提交</button>
+            </form>
+        </div>
+
+        <!-- 專案頁籤內容 -->
+        <div id="project" class="tab-content" style="display: none;">
+            <h2>專案紀錄</h2>
+            <form id="project-form">
+                <label for="project-item">項目:</label>
+                <select id="project-item" name="project-item">
+                    <option value="精算">精算</option>
+                    <option value="線上課程">線上課程</option>
+                    <option value="遊戲">遊戲</option>
+                    <option value="程式">程式</option>
+                </select>
+
+                <label for="start-time">開始時間:</label>
+                <input type="text" id="start-time" name="start-time" readonly>
+
+                <label for="end-time">結束時間:</label>
+                <input type="text" id="end-time" name="end-time" readonly>
+
+                <label for="elapsed-time">經過時間 (hh:mm:ss):</label>
+                <input type="text" id="elapsed-time" name="elapsed-time" readonly>
+
+                <label for="project-content">備註:</label>
+                <input type="text" id="project-content" name="project-content">
+
+                <button type="button" id="timer-button" onclick="toggleTimer()">計時</button>
+                <button type="submit">提交</button>
+            </form>
+        </div>
     </div>
 
     <script src="app.js"></script>
