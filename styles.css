@@ -77,11 +77,21 @@ button:hover {
     color: #000;
 }
 
-#elapsed-time.blink {
-    animation: blink-animation 1s step-end infinite;
+#elapsed-time {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;  /* 確保字型是粗體 */
+    border: none;       /* 移除邊框 */
+    background-color: transparent; /* 確保背景透明 */
+    outline: none;      /* 移除聚焦時的外圍邊框 */
+    color: #000;        /* 設定文字顏色 */
 }
 
-@keyframes blink-animation {
+#elapsed-time.blink {
+    animation: blink 1s step-end infinite; /* 閃爍效果 */
+}
+
+@keyframes blink {
     0% {
         opacity: 1;
     }
@@ -92,6 +102,15 @@ button:hover {
         opacity: 1;
     }
 }
+
+/* 針對手機設備設置樣式 */
+@media screen and (max-width: 768px) {
+    #elapsed-time {
+        font-size: 1.5em;  /* 可以根據手機螢幕調整字型大小 */
+        font-weight: bold;
+    }
+}
+
 
 /* 頁籤按鈕樣式 */
 .tabs {
