@@ -124,7 +124,11 @@ document.getElementById('expense-form').addEventListener('submit', async functio
 
     // 如果勾選了外幣，則將外幣的敘述加到備註前
     if (isForeignCurrency && exchangeRate) {
-        finalNotes = `外幣匯率: ${exchangeRate}，` + finalNotes;
+        if (finalNotes.trim() !== "") {
+            finalNotes = `外幣匯率: ${exchangeRate}，` + finalNotes;
+        } else {
+            finalNotes = `外幣匯率: ${exchangeRate}`;  // 若備註為空，直接加匯率
+        }
     }
 
     const finalAmount = isForeignCurrency ? amount * exchangeRate : amount;
