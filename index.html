@@ -76,7 +76,7 @@
                         <label for="expense-amount">金額:</label>
                         <input type="number" id="expense-amount" name="expense-amount" step="0.01" required style="width: 100%; max-width: 300px; box-sizing: border-box;">
                     </div>
-                    
+
                     <!-- 外幣和匯率欄位在下 -->
                     <div style="display: flex; align-items: center; justify-content: center; gap: 24px; width: 100%;">
                         
@@ -120,8 +120,11 @@
                 <label for="end-time">結束時間:</label>
                 <input type="text" id="end-time" name="end-time" readonly>
 
-                <label for="elapsed-time">經過時間 (hh:mm:ss):</label>
-                <input type="text" id="elapsed-time" name="elapsed-time" readonly>
+                <div style="text-align: center;">
+                <label for="elapsed-time">經過時間:</label>
+                <input type="text" id="elapsed-time" name="elapsed-time" disabled readonly>
+                </div>
+
 
                 <label for="project-content">備註:</label>
                 <input type="text" id="project-content" name="project-content">

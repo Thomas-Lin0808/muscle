@@ -67,12 +67,30 @@ button:hover {
     background-color: #ed8332;
 }
 
-@keyframes blink {
-    50% { opacity: 0; }
+#elapsed-time {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: #000;
 }
 
-#elapsed-time[style*="animation"] {
-    animation: blink 1s step-end infinite alternate;
+#elapsed-time.blink {
+    animation: blink-animation 1s step-end infinite;
+}
+
+@keyframes blink-animation {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 /* 頁籤按鈕樣式 */
