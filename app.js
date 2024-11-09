@@ -187,7 +187,7 @@ function toggleTimer() {
         clearInterval(timerInterval);
         endTime = new Date();
         endTimeField.value = endTime.toLocaleTimeString();
-        elapsedTimeField.style.animation = "blink-animation 1s step-end infinite"; // 開始閃爍
+        elapsedTimeField.style.animation = "blink 1s step-end infinite"; // 開始閃爍
         isTiming = false;
     }
 }
