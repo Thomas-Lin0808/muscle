@@ -132,8 +132,7 @@ document.getElementById('expense-form').addEventListener('submit', async functio
     }
 
     const finalAmount = isForeignCurrency ? amount * exchangeRate : amount;
-    const accountingData = { 
-        date: new Date().toISOString().slice(0, 10), 
+    const accountingData = {  
         category, 
         item, 
         finalAmount, 
@@ -143,7 +142,7 @@ document.getElementById('expense-form').addEventListener('submit', async functio
     console.log('提交的資料：', accountingData); // 檢查送出的資料
 
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwtRlGB0K4okJ4ZtD44jodO5ZhgEOG3tclPLaNBnxK85W9U2fyIvPXaW7ZEzXEMJtdd/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzp9MnXK6NDq0GfYWEJij5sSx96wXCVoFFO9uNbzDAhaL4kEk74bZi8cBsoodEpmEO1/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -218,7 +217,6 @@ document.getElementById('project-form').addEventListener('submit', async functio
     const projectContent = document.getElementById('project-content').value;
 
     const projectData = { 
-        date: new Date().toISOString().slice(0, 10),
         projectItem, 
         projectContent, 
         startTime, 
@@ -230,7 +228,7 @@ document.getElementById('project-form').addEventListener('submit', async functio
     console.log('提交的資料：', projectData); // 檢查送出的資料
 
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxKil74Em9vD6s2L1YoaKXguSGFl9akHU81qIQUcrmcQWtIWBCvArLQ5wCwrGJyrQgq/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzZ2O1VNKSqf4hZthGAv9lvyQnXx689ulz031mOlmSc8hOeuWL4uoD-n2VfOnqNsslo/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
