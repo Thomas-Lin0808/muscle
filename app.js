@@ -42,7 +42,7 @@ document.getElementById('workout-form').addEventListener('submit', async functio
     const workoutData = { bodyPart, exercise, weight, reps, sets };
 
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwXMDACRZFx237IuV6V2Q_iVi3qmp-s-Y5Nu4YgWKSzDQdEUZuqRhQLh0Iirx29Ur-C/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzqh_zaVKerlCXbhXeRAOjhG5WQ6rdG-_uZctfymv4fL3Vydyr53NzGI7lyMcWVPwSC/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded', // 使用 URL 編碼格式
