@@ -63,23 +63,35 @@ document.getElementById('workout-form').addEventListener('submit', async functio
 
 //記帳
 
-// 更新頁面上顯示的剩餘金額（來自 B8 儲存格）
 async function updateTotalAmount() {
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzp9MnXK6NDq0GfYWEJij5sSx96wXCVoFFO9uNbzDAhaL4kEk74bZi8cBsoodEpmEO1/exec');
-        const result = await response.json();
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzp9MnXK6NDq0GfYWEJij5sSx96wXCVoFFO9uNbzDAhaL4kEk74bZi8cBsoodEpmEO1/exec', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        });
 
-        if (result.totalAmount !== undefined) {
-            document.getElementById('total-amount-display').innerText = `剩餘金額: ${result.totalAmount}`;
+        if (response.ok) {
+            const text = await response.text();
+            const params = new URLSearchParams(text); // 使用 URLSearchParams 解析返回的數據
+
+            if (params.get('status') === 'success') {
+                const totalAmount = params.get('totalAmount');
+                document.getElementById('total-amount-display').innerText = `剩餘金額: ${totalAmount}`;
+            } else {
+                document.getElementById('total-amount-display').innerText = `剩餘金額: 無法取得 (伺服器錯誤)`;
+            }
         } else {
-            console.error('無法取得剩餘金額');
-            document.getElementById('total-amount-display').innerText = `無法取得剩餘金額`;
+            document.getElementById('total-amount-display').innerText = `剩餘金額: 無法取得 (HTTP 錯誤)`;
         }
     } catch (error) {
         console.error('更新剩餘金額時發生錯誤：', error);
-        document.getElementById('total-amount-display').innerText = `發生錯誤`;
+        document.getElementById('total-amount-display').innerText = `剩餘金額: 無法取得 (請檢查連線)`;
     }
 }
+
+
 
 
 // 切換到記帳頁籤時更新總金額
