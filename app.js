@@ -11,7 +11,7 @@ const exercises = {
     胸部: ['槓鈴胸推', '機械胸推', '機械上胸推', '機械下胸推', '啞鈴胸推', '啞鈴上胸推','啞鈴下胸推' ,'機械夾胸', '伏地挺身'],
     背部: ['機械引體向上', '啞鈴划船', '硬舉', '滑輪下拉', '滑輪水平拉', '機械下拉', '機械水平拉', '槓鈴硬舉', '槓鈴划船', '機械引體向上' ],
     腿部: ['槓鈴深蹲', '機械腿推', '啞鈴分腿蹲'],
-    肩部: ['槓鈴肩推', '啞鈴肩推', '機械肩推(斜)', '機械肩推(直)', '啞鈴側飛鳥', '啞鈴後飛鳥', '啞鈴前平舉', '機械側飛鳥',  '機械後飛鳥', '滑輪飛鳥', '彈力帶飛鳥'],
+    肩部: ['槓鈴肩推', '啞鈴肩推', '機械肩推(斜)', '機械肩推(直)', '啞鈴側飛鳥', '啞鈴後飛鳥', '啞鈴前平舉', '機械側飛鳥' , '機械後飛鳥', '滑輪飛鳥', '彈力帶飛鳥'],
     手臂: ['機械二頭彎舉', '啞鈴二頭彎舉', '機械三頭下壓'],
     核心: ['撐體捲腹', '機械捲腹', '羅馬椅捲腹', '羅馬椅側傾']
 };
@@ -42,7 +42,7 @@ document.getElementById('workout-form').addEventListener('submit', async functio
     const workoutData = { bodyPart, exercise, weight, reps, sets };
 
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyfuBTvvXL3uY5hSOZ3Kp623orM_RCKgDtObGaicLqkEuBi8B48gwTQUaR6-L1slJx2/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbz6D0dkVAlzcv_lFpM9_27xKk2tUKhGUGflsylG9L0D3BkKOgYSwERpS4dNyvVXq_e-/exechttps://script.google.com/macros/s/AKfycbyfuBTvvXL3uY5hSOZ3Kp623orM_RCKgDtObGaicLqkEuBi8B48gwTQUaR6-L1slJx2/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded', // 使用 URL 編碼格式
@@ -62,6 +62,29 @@ document.getElementById('workout-form').addEventListener('submit', async functio
 });
 
 //記帳
+
+// 更新頁面上顯示的剩餘金額（來自 B8 儲存格）
+async function updateTotalAmount() {
+    try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzp9MnXK6NDq0GfYWEJij5sSx96wXCVoFFO9uNbzDAhaL4kEk74bZi8cBsoodEpmEO1/exec');
+        const result = await response.json();
+
+        if (result.totalAmount !== undefined) {
+            document.getElementById('total-amount-display').innerText = `剩餘金額: ${result.totalAmount}`;
+        } else {
+            console.error('無法取得剩餘金額');
+            document.getElementById('total-amount-display').innerText = `無法取得剩餘金額`;
+        }
+    } catch (error) {
+        console.error('更新剩餘金額時發生錯誤：', error);
+        document.getElementById('total-amount-display').innerText = `發生錯誤`;
+    }
+}
+
+
+// 切換到記帳頁籤時更新總金額
+document.querySelector('button[onclick="openTab(\'expense\')"]').addEventListener('click', updateTotalAmount);
+
 
 // 根據類別動態更新項目
 function updateItemList() {
@@ -153,6 +176,7 @@ document.getElementById('expense-form').addEventListener('submit', async functio
         const result = await response.json();
         if (result.status === 'success') {
             alert('記帳資料已成功提交到 Google Sheet！');
+            updateTotalAmount(); // 提交成功後，更新剩餘金額
         } else {
             alert('提交失敗！');
         }
@@ -161,6 +185,7 @@ document.getElementById('expense-form').addEventListener('submit', async functio
         alert('發生錯誤，請稍後再試！');
     }
 });
+
 
 //專案
 let timerInterval;

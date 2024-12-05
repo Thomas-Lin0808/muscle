@@ -52,6 +52,8 @@
         <!-- 記帳頁籤內容 -->
         <div id="expense" class="tab-content" style="display: none;">
             <h2>記帳紀錄</h2>
+            <!-- 顯示總金額 -->
+    <div id="total-amount-display" style="font-weight: bold; margin-bottom: 16px;">剩餘金額: 加載中...</div>
             <form id="expense-form">
                 <label for="expense-category">類別:</label>
                 <select id="expense-category" name="expense-category" onchange="updateItemList()">
